@@ -46,18 +46,27 @@ export default function App() {
           <Stack.Screen name="Home" options={{ title: `Hi ${user.name}` }}>
             {(props) => <HomeScreen {...props} userData={user} />}
           </Stack.Screen>
-          <Stack.Screen name="Profile" component={ProfileScreen} />
-          <Stack.Screen name="Settings" component={SettingsScreen} />
-          <Stack.Screen name="ConnectGroup" component={ConnectGroupScreen} />
-          <Stack.Screen name="MinistryTeam" component={MinistryTeamScreen} />
+          {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
+          <Stack.Screen name="ConnectGroup" options={{ title: "Profile" }}>
+            {(props) => <ConnectGroupScreen {...props} userData={user} />}
+          </Stack.Screen>
+          <Stack.Screen
+            name="MinistryTeam"
+            options={{ title: "Ministry Team" }}
+          >
+            {(props) => <MinistryTeamScreen {...props} userData={user} />}
+          </Stack.Screen>
+          <Stack.Screen name="Settings" options={{ title: "Settings" }}>
+            {(props) => <SettingsScreen {...props} userData={user} />}
+          </Stack.Screen>
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
-          <Stack.Screen name="Login" options={{ title: "Login" }}>
-            {(props) => <LoginScreen {...props} setUser={setUser} />}
-          </Stack.Screen>
           <Stack.Screen name="Register" options={{ title: "Register" }}>
             {(props) => <RegisterScreen {...props} setUser={setUser} />}
+          </Stack.Screen>
+          <Stack.Screen name="Login" options={{ title: "Login" }}>
+            {(props) => <LoginScreen {...props} setUser={setUser} />}
           </Stack.Screen>
         </Stack.Navigator>
       )}
